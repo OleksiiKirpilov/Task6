@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Part2 {
 
@@ -33,21 +32,31 @@ public class Part2 {
 
     public static long removeByIndex(final List<Integer> list, final int k) {
         long time1 = System.nanoTime();
-        List<Integer> l = list.stream().collect(Collectors.toList());
+        List<Integer> l = getListCopy(list);
         int index = -1;
-        while (l.size() != 1) {
+        while (l.size() > 1) {
             index = (index + k) % l.size();
             l.remove(index--);
         }
         return (System.nanoTime() - time1) / 1_000_000;
     }
 
+    private static List<Integer> getListCopy(List<Integer> list) {
+        List<Integer> l;
+        if (list instanceof ArrayList) {
+            l = new ArrayList<>(list);
+        } else {
+            l = new LinkedList<>(list);
+        }
+        return l;
+    }
+
     public static long removeByIterator(final List<Integer> list, int k) {
         long time1 = System.nanoTime();
-        List<Integer> l = list.stream().collect(Collectors.toList());
+        List<Integer> l = getListCopy(list);
         Iterator<Integer> it = l.iterator();
-        while (l.size() != 1) {
-            int s = step;
+        while (l.size() > 1) {
+            int s = k;
             while (s != 0) {
                 if (!it.hasNext()) {
                     it = l.iterator();
