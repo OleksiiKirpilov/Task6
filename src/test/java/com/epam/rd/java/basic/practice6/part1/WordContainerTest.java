@@ -1,7 +1,8 @@
 package com.epam.rd.java.basic.practice6.part1;
 
-import static org.junit.Assert.*;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class WordContainerTest {
 

@@ -1,12 +1,11 @@
 package com.epam.rd.java.basic.practice6.part1;
 
-import java.util.Comparator;
 import java.util.Objects;
 
 public class Word implements Comparable<Word> {
 
 	private final String content;
-	
+
 	private int frequency;
 
     public Word(String word) {
@@ -49,12 +48,8 @@ public class Word implements Comparable<Word> {
         return content + " : " + frequency;
     }
 
-    public boolean equalContent(Word w) {
-        return content.equals(w.content);
-    }
-
     public static int compareByFrequencyThenContent(Word w1, Word w2) {
-        int cmp = 0;
+        int cmp;
         if (w1.frequency != w2.frequency) {
             cmp = (w1.frequency > w2.frequency) ? -1 : 1;
         } else {
@@ -63,12 +58,4 @@ public class Word implements Comparable<Word> {
         return cmp;
     }
 
-
-    public static class CompareByFrequencyThenContent implements Comparator<Word> {
-
-        @Override
-        public int compare(Word w1, Word w2) {
-            return compareByFrequencyThenContent(w1, w2);
-        }
-    }
 }
