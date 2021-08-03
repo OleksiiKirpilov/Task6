@@ -88,18 +88,17 @@ public class Tree<E extends Comparable<E>> {
         return root.left == null ? root.element : findLowest(root.left);
     }
 
-    public void traverseInOrder(Node<E> node, StringBuilder sb) {
+    public void traverseInOrder(Node<E> node, String spaces) {
         if (node == null) {
             return;
         }
-        traverseInOrder(node.left, sb.append("  "));
-        System.out.println(sb.toString() + node.element);
-        traverseInOrder(node.right, sb.append("  "));
+        traverseInOrder(node.left, spaces + "  ");
+        System.out.println(spaces + node.element);
+        traverseInOrder(node.right, spaces + "  ");
     }
 
     public void print() {
-        StringBuilder sb = new StringBuilder("    ");
-        traverseInOrder(root, sb);
+        traverseInOrder(root, "");
     }
 
     private static final class Node<E> {

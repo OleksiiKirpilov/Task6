@@ -18,7 +18,14 @@ public class WordTest {
     public void compareToShouldReturn1IfFrequencyIsLower() {
         Word w3 = new Word("word");
         w3.increaseFrequency();
-        assertEquals(-1, w1.compareTo(w3));
+        assertEquals(1, w1.compareTo(w3));
+    }
+
+    @Test
+    public void toStringShouldReturnInCorrectFormat() {
+        Word w = new Word("qwe");
+        w.increaseFrequency();
+        assertEquals("qwe : 2", w.toString());
     }
 
 }

@@ -16,16 +16,19 @@ public class TreeTest {
 
     @Test
     public void shouldReturnFalseIfAddedTwoTimes() {
+        t.add(1);
         assertFalse(t.add(1));
     }
 
     @Test
     public void shouldReturnTrueIfRemovedExisted() {
+        t.add(1);
         assertTrue(t.remove(1));
     }
 
     @Test
     public void shouldReturnFalseIfRemovedNonExisted() {
+        t.remove(1);
         assertFalse(t.remove(1));
     }
 
