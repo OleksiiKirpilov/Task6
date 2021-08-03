@@ -5,6 +5,7 @@ import com.epam.rd.java.basic.practice6.part2.Part2;
 import com.epam.rd.java.basic.practice6.part3.Part3;
 import com.epam.rd.java.basic.practice6.part4.Part4;
 import com.epam.rd.java.basic.practice6.part5.Part5;
+import com.epam.rd.java.basic.practice6.part6.Part6;
 
 public class Demo {
 
@@ -21,7 +22,13 @@ public class Demo {
 		Part4.main(args);
 		printHeader(5);
 		Part5.main(args);
-		System.out.println(SEPARATOR);
+		printHeader(6);
+		String[] params = {"--input", "part6.txt", "--task", "frequency"};
+		Part6.main(params);
+		params[3] = "length";
+		Part6.main(params);
+		params[3] = "duplicates";
+		Part6.main(params);
 	}
 
 	private static void printHeader(int n) {

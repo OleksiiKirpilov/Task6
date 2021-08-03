@@ -11,7 +11,7 @@ public class WordContainerTest {
         WordContainer wc = new WordContainer();
         wc.add(new Word("word"));
         wc.add(new Word("word2"));
-        assertEquals(wc.size(), 2);
+        assertEquals(2, wc.size());
     }
 
     @Test
@@ -19,7 +19,7 @@ public class WordContainerTest {
         WordContainer wc = new WordContainer();
         wc.add(new Word("word"));
         wc.add(new Word("word"));
-        assertEquals(wc.size(), 1);
+        assertEquals(1, wc.size());
     }
 
 }
