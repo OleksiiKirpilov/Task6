@@ -54,15 +54,13 @@ public class Part2 {
     public static long removeByIterator(final List<Integer> list, int k) {
         List<Integer> l = getListCopy(list);
         long time1 = System.nanoTime();
-        Iterator<Integer> it = l.iterator();
+        Iterator<Integer> it = l.listIterator();
         while (l.size() > 1) {
-            int s = k;
-            while (s != 0) {
+            for (int s = k; s != 0; --s) {
                 if (!it.hasNext()) {
-                    it = l.iterator();
+                    it = l.listIterator();
                 }
                 it.next();
-                --s;
             }
             it.remove();
         }
