@@ -5,8 +5,8 @@ import java.util.NoSuchElementException;
 
 public class Range implements Iterable<Integer> {
 
-    private final int firstBound;
-    private final int secBound;
+    private final int first;
+    private final int last;
     private final int step;
 
     public Range(int n, int m) {
@@ -18,12 +18,12 @@ public class Range implements Iterable<Integer> {
             throw new IllegalArgumentException();
         }
         if (reversedOrder) {
-            this.firstBound = secBound;
-            this.secBound = firstBound;
+            this.first = secBound;
+            this.last = firstBound;
             step = -1;
         } else {
-            this.firstBound = firstBound;
-            this.secBound = secBound;
+            this.first = firstBound;
+            this.last = secBound;
             step = 1;
         }
     }
@@ -35,11 +35,11 @@ public class Range implements Iterable<Integer> {
 
     private final class IteratorImpl implements Iterator<Integer> {
 
-        int index = firstBound;
+        int index = first;
 
         @Override
         public boolean hasNext() {
-            return (step == 1) ? index <= secBound : index >= secBound;
+            return (step == 1) ? index <= last : index >= last;
         }
 
         @Override

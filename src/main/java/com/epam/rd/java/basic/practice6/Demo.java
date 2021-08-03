@@ -26,7 +26,7 @@ public class Demo {
 
 	private static void printHeader(int n) {
 		System.out.println(SEPARATOR);
-		System.out.printf("Part %d demo:", n);
+		System.out.printf("Part %d demo:%n", n);
 	}
 
 }

@@ -5,10 +5,6 @@ import java.util.TreeSet;
 
 public class WordContainer extends TreeSet<Word> {
 
-    public WordContainer() {
-        super(Word::compareByFrequencyThenContent);
-    }
-
     public static void main(String[] args) {
         WordContainer wc = new WordContainer();
         Scanner in = new Scanner(System.in);
