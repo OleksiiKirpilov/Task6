@@ -31,8 +31,8 @@ public class Part2 {
     }
 
     public static long removeByIndex(final List<Integer> list, final int k) {
-        long time1 = System.nanoTime();
         List<Integer> l = getListCopy(list);
+        long time1 = System.nanoTime();
         int index = -1;
         while (l.size() > 1) {
             index = (index + k) % l.size();
@@ -52,8 +52,8 @@ public class Part2 {
     }
 
     public static long removeByIterator(final List<Integer> list, int k) {
-        long time1 = System.nanoTime();
         List<Integer> l = getListCopy(list);
+        long time1 = System.nanoTime();
         Iterator<Integer> it = l.iterator();
         while (l.size() > 1) {
             int s = k;
