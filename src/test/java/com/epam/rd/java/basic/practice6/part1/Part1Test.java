@@ -39,7 +39,6 @@ public class Part1Test {
                 Assert.assertEquals(datum, line);
             }
         }
-
     }
 
 }
