@@ -49,6 +49,9 @@ public class Word implements Comparable<Word> {
     }
 
     public static int compareByFrequencyThenContent(Word w1, Word w2) {
+        if (w1.content.equals(w2.content)) {
+            return 0;
+        }
         int cmp;
         if (w1.frequency != w2.frequency) {
             cmp = (w1.frequency > w2.frequency) ? -1 : 1;
