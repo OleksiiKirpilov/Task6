@@ -1,5 +1,6 @@
-package com.epam.rd.java.basic.practice6.part3;
+package com.epam.rd.java.basic.practice6.part5;
 
+import com.epam.rd.java.basic.practice6.part3.Part3;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -8,7 +9,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class Part3Test {
+public class Part5Test {
 
     private PrintStream std_out;
     private ByteArrayOutputStream baos;
@@ -28,9 +29,9 @@ public class Part3Test {
     }
 
     @Test
-    public void mainShouldPrint14Lines() {
-        Part3.main(new String[0]);
+    public void mainShouldPrint9Lines() {
+        Part5.main(new String[0]);
         String[] output = baos.toString().split(System.lineSeparator());
-        Assert.assertEquals(14, output.length);
+        Assert.assertEquals(9, output.length);
     }
 }

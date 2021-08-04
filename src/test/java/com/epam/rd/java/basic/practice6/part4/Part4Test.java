@@ -28,7 +28,7 @@ public class Part4Test {
         System.setOut(std_out);
     }
     @Test
-    public void mainShouldPrint7Lines() {
+    public void mainShouldPrint2Lines() {
         Part4.main(new String[0]);
         String[] output = baos.toString().split(System.lineSeparator());
         Assert.assertEquals(2, output.length);
