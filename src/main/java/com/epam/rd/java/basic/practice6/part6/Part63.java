@@ -17,7 +17,8 @@ public class Part63 {
         Map<String, Integer> wordsCount = words
                 .stream()
                 .collect(groupingBy(Function.identity(), summingInt(e -> 1)));
-        List<String> list = words.stream()
+        List<String> list = Part62.removeDuplicates(words);
+        list = list.stream()
                 .filter(s -> wordsCount.get(s) > 1)
                 .limit(3)
                 .map(String::toUpperCase)

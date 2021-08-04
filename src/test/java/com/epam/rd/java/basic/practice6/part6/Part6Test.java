@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Part6Test {
@@ -15,13 +16,12 @@ public class Part6Test {
     private PrintStream std_out;
 
     private ByteArrayOutputStream baos;
-    private PrintStream ps;
 
     @Before
     public void prepare() {
         std_out = System.out;
         baos = new ByteArrayOutputStream();
-        ps = new PrintStream(baos);
+        PrintStream ps = new PrintStream(baos);
         System.setOut(ps);
     }
 
@@ -32,8 +32,22 @@ public class Part6Test {
     }
 
     @Test
+    public void getListOfWordsShouldReturnListOfWords() {
+        List<String> words = Part6.getListOfWords("part6.txt");
+        Assert.assertTrue(words.size() > 0);
+    }
+
+    @Test
     public void shouldPrintUsageInfoWhenRunWithoutArgs() {
         Part6.main(new String[]{""});
+        String output = baos.toString();
+        Assert.assertTrue(output.contains("Usage:"));
+        Assert.assertTrue(output.split(" ").length >= 6);
+    }
+
+    @Test
+    public void shouldPrintUsageInfoWhenRunWithoutSomeArgs() {
+        Part6.main(new String[]{"-i", "--task", "duplicates"});
         String output = baos.toString();
         Assert.assertTrue(output.contains("Usage:"));
         Assert.assertTrue(output.split(" ").length >= 6);
@@ -67,4 +81,31 @@ public class Part6Test {
         }
     }
 
+    @Test
+    public void part62ShouldPrintCorrectData() {
+        Part62.work(Arrays.asList("a", "bb", "z", "z", "ccc", "bb"));
+        String output = baos.toString();
+        try (Scanner sc = new Scanner(output)) {
+            String line1 = sc.nextLine();
+            String line2 = sc.nextLine();
+            String line3 = sc.nextLine();
+            Assert.assertEquals("ccc ==> 3", line1);
+            Assert.assertEquals("bb ==> 2", line2);
+            Assert.assertEquals("a ==> 1", line3);
+        }
+    }
+
+    @Test
+    public void part63ShouldPrintCorrectData() {
+        Part63.work(Arrays.asList("a", "bb", "z", "z", "ccc", "bb", "ccc"));
+        String output = baos.toString();
+        try (Scanner sc = new Scanner(output)) {
+            String line1 = sc.next();
+            String line2 = sc.next();
+            String line3 = sc.next();
+            Assert.assertEquals("BB", line1);
+            Assert.assertEquals("Z", line2);
+            Assert.assertEquals("CCC", line3);
+        }
+    }
 }
