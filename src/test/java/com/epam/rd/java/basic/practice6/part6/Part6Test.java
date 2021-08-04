@@ -14,7 +14,6 @@ import java.util.Scanner;
 public class Part6Test {
 
     private PrintStream std_out;
-
     private ByteArrayOutputStream baos;
 
     @Before

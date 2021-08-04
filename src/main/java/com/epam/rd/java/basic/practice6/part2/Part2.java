@@ -11,7 +11,7 @@ public class Part2 {
     private static int step;
 
     public static void main(String[] args) {
-        sizeOfList = 50_000;
+        sizeOfList = 10_000;
         step = 4;
         processList(new LinkedList<>(), "LinkedList");
         processList(new ArrayList<>(sizeOfList), "ArrayList");
@@ -51,6 +51,13 @@ public class Part2 {
         return l;
     }
 
+    /*
+    LinkedList#Index: 26 ms
+    LinkedList#Iterator: 2 ms
+    ArrayList#Index: 3 ms
+    ArrayList#Iterator: 3 ms
+     */
+
     public static long removeByIterator(final List<Integer> list, int k) {
         List<Integer> l = getListCopy(list);
         long time1 = System.nanoTime();
@@ -64,6 +71,6 @@ public class Part2 {
             }
             it.remove();
         }
-        return (System.nanoTime() - time1) / 1_000_000;
+        return (System.nanoTime() - time1) / 1_000_000 ;
     }
 }
