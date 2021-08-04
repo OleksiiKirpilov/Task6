@@ -1,5 +1,6 @@
 package com.epam.rd.java.basic.practice6.part6;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,11 @@ import static java.util.stream.Collectors.summingInt;
 public class Part61 {
 
     private Part61() {
+    }
+
+    public static void main(String[] args) {
+        List<String> l = Arrays.asList("a", "b", "z", "z", "c", "b");
+        work(l);
     }
 
     public static void work(List<String> words) {
