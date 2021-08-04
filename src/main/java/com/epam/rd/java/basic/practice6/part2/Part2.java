@@ -11,7 +11,7 @@ public class Part2 {
     private static int step;
 
     public static void main(String[] args) {
-        sizeOfList = 20_000;
+        sizeOfList = 50_000;
         step = 4;
         processList(new LinkedList<>(), "LinkedList");
         processList(new ArrayList<>(sizeOfList), "ArrayList");
@@ -54,11 +54,11 @@ public class Part2 {
     public static long removeByIterator(final List<Integer> list, int k) {
         List<Integer> l = getListCopy(list);
         long time1 = System.nanoTime();
-        Iterator<Integer> it = l.listIterator();
+        Iterator<Integer> it = l.iterator();
         while (l.size() > 1) {
             for (int s = k; s != 0; --s) {
                 if (!it.hasNext()) {
-                    it = l.listIterator();
+                    it = l.iterator();
                 }
                 it.next();
             }
