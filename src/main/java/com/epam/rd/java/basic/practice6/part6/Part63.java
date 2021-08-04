@@ -8,24 +8,24 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.summingInt;
 
-public class Part63{
+public class Part63 {
 
-    private Part63() {}
+    private Part63() {
+    }
 
-    public static void work(List<String>  words) {
-        Map<String, Integer> wordFreqs = words
+    public static void work(List<String> words) {
+        Map<String, Integer> wordsCount = words
                 .stream()
                 .collect(groupingBy(Function.identity(), summingInt(e -> 1)));
-        List<String> l = words.stream()
-                .filter(s -> wordFreqs.get(s) > 1)
+        List<String> list = words.stream()
+                .filter(s -> wordsCount.get(s) > 1)
                 .limit(3)
                 .map(String::toUpperCase)
                 .map(s -> new StringBuilder(s).reverse().toString())
                 .collect(Collectors.toList());
-        for (String w : l) {
-            System.out.println(w);
+        for (String word : list) {
+            System.out.println(word);
         }
     }
-
 
 }

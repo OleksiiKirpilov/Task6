@@ -10,10 +10,12 @@ public class Part61{
 
     private static final String ARROW = " ==> ";
 
+    private static Map<String, Integer> wordPositions;
+
     private Part61() {}
 
     public static void work(List<String> words) {
-        Map<String, Integer> wordPositions = new HashMap<>();
+        wordPositions = new HashMap<>();
         for (int i = 0; i < words.size(); i++) {
             String word = words.get(i);
             if (wordPositions.containsKey(word)) {
@@ -21,17 +23,29 @@ public class Part61{
             }
             wordPositions.put(word, i);
         }
-        Map<String, Integer> wordFreqs = words
+        Map<String, Integer> wordsCount = words
                 .stream()
                 .collect(groupingBy(Function.identity(), summingInt(e -> 1)));
-        List<Map.Entry<String, Integer>> wf =
-                wordFreqs.entrySet().stream()
-                .sorted(Comparator.comparing(Map.Entry::getValue))
+        List<Map.Entry<String, Integer>> list =
+                wordsCount.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue())
                 .collect(Collectors.toList());
-        Collections.reverse(wf);
+
+        Collections.sort(list, (e1, e2) -> {
+            int cmp = e2.getValue() - e1.getValue();
+            if (cmp < 0) {
+                return -1;
+            }
+            if (cmp > 1) {
+                return 1;
+            }
+            cmp = wordPositions.get(e1.getKey()) - wordPositions.get(e2.getKey());
+            return (cmp < 1) ? -1 : 1;
+        });
+
         for (int i = 0; i < 3; i++) {
-            String key = wf.get(i).getKey();
-            Integer value = wf.get(i).getValue();
+            String key = list.get(i).getKey();
+            Integer value = list.get(i).getValue();
             System.out.println(key + ARROW + value);
         }
 

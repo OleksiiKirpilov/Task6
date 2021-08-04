@@ -25,8 +25,10 @@ public class Demo {
 		printHeader(6);
 		String[] params = {"--input", "part6.txt", "--task", "frequency"};
 		Part6.main(params);
+		System.out.println();
 		params[3] = "length";
 		Part6.main(params);
+		System.out.println();
 		params[3] = "duplicates";
 		Part6.main(params);
 	}
