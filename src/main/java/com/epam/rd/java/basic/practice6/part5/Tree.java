@@ -75,17 +75,17 @@ public class Tree<E extends Comparable<E>> {
         return root.left == null ? root.element : findLowest(root.left);
     }
 
-    public void traverseInOrder(Node<E> node, String spaces) {
+    public void printNodesInOrder(Node<E> node, String spaces) {
         if (node == null) {
             return;
         }
-        traverseInOrder(node.left, spaces + "  ");
+        printNodesInOrder(node.left, spaces + "  ");
         System.out.println(spaces + node.element);
-        traverseInOrder(node.right, spaces + "  ");
+        printNodesInOrder(node.right, spaces + "  ");
     }
 
     public void print() {
-        traverseInOrder(root, "");
+        printNodesInOrder(root, "");
     }
 
     private static final class Node<E> {
