@@ -9,6 +9,8 @@ public class Part62 {
 
     private static final String ARROW = " ==> ";
 
+    private Part62() {}
+
     public static void work(List<String>  words) {
 
         Map<String, Integer> wordPositions = new HashMap<>();

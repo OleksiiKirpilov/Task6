@@ -10,6 +10,8 @@ public class Part61{
 
     private static final String ARROW = " ==> ";
 
+    private Part61() {}
+
     public static void work(List<String> words) {
         Map<String, Integer> wordPositions = new HashMap<>();
         for (int i = 0; i < words.size(); i++) {

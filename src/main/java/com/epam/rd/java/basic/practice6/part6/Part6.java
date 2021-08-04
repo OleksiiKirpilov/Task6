@@ -2,8 +2,9 @@ package com.epam.rd.java.basic.practice6.part6;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class Part6 {
@@ -11,50 +12,42 @@ public class Part6 {
     public static void main(String[] args) {
         String fileName = "";
         String taskName = "";
-        for (int i = 0; i < args.length; ++i) {
-            String arg = args[i].toLowerCase();
-            switch (arg) {
-                case "--input":
-                case "-i":
-                    fileName = args[++i];
-                    break;
-                case "--task":
-                case "-t":
-                    taskName = args[++i].toLowerCase();
-                    break;
-                default:
-                    printUsage();
-                    return;
+        try (Scanner sc = new Scanner(String.join(" ", args))) {
+            while (sc.hasNext()) {
+                String arg = sc.next().toLowerCase();
+                switch (arg) {
+                    case "--input":
+                    case "-i":
+                        fileName = sc.next();
+                        break;
+                    case "--task":
+                    case "-t":
+                        taskName = sc.next().toLowerCase();
+                        break;
+                    default:
+                        printUsage();
+                        return;
+                }
             }
         }
         if (fileName.isEmpty() || taskName.isEmpty()) {
             printUsage();
             return;
         }
-        Class<?> clazz;
+        List<String> words = getListOfWords(fileName);
         switch (taskName) {
             case "frequency":
-                clazz = Part61.class;
+                Part61.work(words);
                 break;
             case "length":
-                clazz = Part62.class;
+                Part62.work(words);
                 break;
             case "duplicates":
-                clazz = Part63.class;
+                Part63.work(words);
                 break;
             default:
                 printUsage();
-                return;
         }
-        List<String> words = getListOfWords(fileName);
-        Method method;
-        try {
-            method = clazz.getMethod("work", List.class);
-            method.invoke(clazz, words);
-        } catch (ReflectiveOperationException e) {
-            Logger.getGlobal().severe(e.getMessage());
-        }
-
     }
 
     private static void printUsage() {

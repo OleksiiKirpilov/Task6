@@ -10,6 +10,8 @@ import static java.util.stream.Collectors.summingInt;
 
 public class Part63{
 
+    private Part63() {}
+
     public static void work(List<String>  words) {
         Map<String, Integer> wordFreqs = words
                 .stream()

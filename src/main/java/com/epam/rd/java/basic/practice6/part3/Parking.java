@@ -1,25 +1,20 @@
 package com.epam.rd.java.basic.practice6.part3;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Parking {
 
-    private final List<Boolean> lot;
+    private final boolean[] lot;
 
     public Parking(int capacity) {
-        lot = new ArrayList<>(capacity);
-        for (int i = 0; i < capacity; i++) {
-            lot.add(false);
-        }
+        lot = new boolean[capacity];
     }
 
     public boolean arrive(int k) {
         checkPlace(k);
         int counter = 0;
-        for (int index = k; counter++ < lot.size(); index = (index + 1) % lot.size()) {
-            if (Boolean.FALSE.equals(lot.get(index))) {
-                lot.set(index, true);
+        for (int index = k; counter++ < lot.length; index = (index + 1) % lot.length) {
+            if (!lot[index]) {
+                lot[index] = true;
                 return true;
             }
         }
@@ -28,7 +23,11 @@ public class Parking {
 
     public boolean depart(int k) {
         checkPlace(k);
-        return lot.set(k, false);
+        if (!lot[k]) {
+            return false;
+        }
+        lot[k] = false;
+        return true;
     }
 
     public void print() {
@@ -40,7 +39,7 @@ public class Parking {
     }
 
     private void checkPlace(int k) {
-        if ((k > lot.size() - 1) || k < 0) {
+        if ((k > lot.length - 1) || k < 0) {
             throw new IllegalArgumentException();
         }
     }
