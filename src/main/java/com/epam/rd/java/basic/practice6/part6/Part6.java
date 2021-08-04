@@ -2,7 +2,9 @@ package com.epam.rd.java.basic.practice6.part6;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class Part6 {
@@ -10,25 +12,23 @@ public class Part6 {
     public static void main(String[] args) {
         String fileName = "";
         String taskName = "";
-        // using ArrayList just because SONAR dislikes
-        // changing indexing variable inside of loop,
-        // and arrays don't have iterators
-        Iterator<String> it = Arrays.asList(args).iterator();
-        while (it.hasNext()) {
-            String arg = it.next().toLowerCase();
+        int i = 0;
+        while (i < args.length) {
+            String arg = args[i];
             switch (arg) {
                 case "--input":
                 case "-i":
-                    fileName = it.next();
+                    fileName = args[++i];
                     break;
                 case "--task":
                 case "-t":
-                    taskName = it.next().toLowerCase();
+                    taskName = args[++i].toLowerCase();
                     break;
                 default:
                     printUsage();
                     return;
             }
+            i++;
         }
         if (fileName.isEmpty() || taskName.isEmpty()) {
             printUsage();

@@ -71,6 +71,8 @@ public class Part2 {
             }
             it.remove();
         }
-        return (System.nanoTime() - time1) / 1_000_000 ;
+        return (System.nanoTime() - time1) / 1_000_000;
     }
+
 }
+

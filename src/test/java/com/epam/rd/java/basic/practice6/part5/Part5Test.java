@@ -1,6 +1,5 @@
 package com.epam.rd.java.basic.practice6.part5;
 
-import com.epam.rd.java.basic.practice6.part3.Part3;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;

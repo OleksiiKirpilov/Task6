@@ -1,6 +1,5 @@
 package com.epam.rd.java.basic.practice6.part4;
 
-import com.epam.rd.java.basic.practice6.part4.Part4;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -27,6 +26,7 @@ public class Part4Test {
         System.out.flush();
         System.setOut(std_out);
     }
+
     @Test
     public void mainShouldPrint2Lines() {
         Part4.main(new String[0]);
