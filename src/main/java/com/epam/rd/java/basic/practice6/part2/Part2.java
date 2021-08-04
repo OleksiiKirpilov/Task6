@@ -11,7 +11,7 @@ public class Part2 {
     private static int step;
 
     public static void main(String[] args) {
-        sizeOfList = 10_000;
+        sizeOfList = 20_000;
         step = 4;
         processList(new LinkedList<>(), "LinkedList");
         processList(new ArrayList<>(sizeOfList), "ArrayList");
