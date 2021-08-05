@@ -21,20 +21,13 @@ public class TreeTest {
     }
 
     @Test
-    public void shouldReturnTrueIfRemovedExisted() {
-        t.add(1);
-        assertTrue(t.remove(1));
-    }
-
-    @Test
     public void shouldReturnFalseIfRemovedNonExisted() {
         t.remove(1);
         assertFalse(t.remove(1));
     }
 
     @Test
-    public void shouldRemoveAll() {
-        t = new Tree<>();
+    public void shouldRemoveAllReturningTrue() {
         Integer[] data = {1, 9, 4, 434, 23, 6, -43, 0 ,34, -665};
         t.add(data);
         for (Integer i : data) {

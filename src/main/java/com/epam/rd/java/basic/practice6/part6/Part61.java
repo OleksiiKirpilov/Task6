@@ -1,5 +1,6 @@
 package com.epam.rd.java.basic.practice6.part6;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class Part61 {
             int cmp = e2.getValue() - e1.getValue();
             if (cmp != 0) return cmp;
             return wordPositions.get(e1.getKey()) - wordPositions.get(e2.getKey());
-        }).limit(3).sorted((e1, e2) -> e2.getKey().compareTo(e1.getKey()))
+        }).limit(3).sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
                 .forEach(w -> System.out.printf("%s ==> %d%n", w.getKey(), w.getValue()));
     }
 
