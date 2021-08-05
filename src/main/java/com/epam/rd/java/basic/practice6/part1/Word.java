@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Word implements Comparable<Word> {
 
-	private final String content;
+    private final String content;
 
-	private int frequency;
+    private int frequency;
 
     public Word(String word) {
         this(word, 1);
@@ -52,13 +52,8 @@ public class Word implements Comparable<Word> {
         if (w1.content.equals(w2.content)) {
             return 0;
         }
-        int cmp;
-        if (w1.frequency != w2.frequency) {
-            cmp = (w1.frequency > w2.frequency) ? -1 : 1;
-        } else {
-            cmp = w1.content.compareTo(w2.content);
-        }
-        return cmp;
+        int cmp = w2.frequency - w1.frequency;
+        return (cmp != 0) ? cmp : w1.content.compareTo(w2.content);
     }
 
 }

@@ -53,6 +53,19 @@ public class Part6Test {
     }
 
     @Test
+    public void shouldPrintUsageWhenCalled() {
+        Part6.main(new String[0]);
+        String output = baos.toString();
+        Assert.assertTrue(output.contains("Usage:"));
+        Assert.assertTrue(output.split(" ").length >= 6);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void shouldThrowExceptionWhenRunWithoutSomeMoreArgs() {
+        Part6.main(new String[]{"--task", "duplicates", "-i"});
+    }
+
+    @Test
     public void partsShouldPrint3Lines() {
         String[][] params = new String[][]{
                 {"-i", "part6.txt", "-t", "frequency"},
