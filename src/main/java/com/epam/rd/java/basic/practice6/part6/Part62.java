@@ -2,7 +2,6 @@ package com.epam.rd.java.basic.practice6.part6;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Part62 {
 
