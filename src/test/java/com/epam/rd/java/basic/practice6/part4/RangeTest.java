@@ -3,6 +3,7 @@ package com.epam.rd.java.basic.practice6.part4;
 import org.junit.Test;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertEquals;
 
@@ -28,6 +29,21 @@ public class RangeTest {
             sb.append(n);
         }
         assertEquals("109876543", sb.toString());
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void shouldThrowNoSuchElementException() {
+        Range r = new Range(1, 2);
+        Iterator<Integer> it = r.iterator();
+        while (it.hasNext()) {
+            it.next();
+        }
+        it.next();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowIllegalArgumentException() {
+        Range r = new Range(10, 1);
     }
 
 }

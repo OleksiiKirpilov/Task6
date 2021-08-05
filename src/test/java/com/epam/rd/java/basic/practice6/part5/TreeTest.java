@@ -32,5 +32,15 @@ public class TreeTest {
         assertFalse(t.remove(1));
     }
 
+    @Test
+    public void shouldRemoveAll() {
+        t = new Tree<>();
+        Integer[] data = {1, 9, 4, 434, 23, 6, -43, 0 ,34, -665};
+        t.add(data);
+        for (Integer i : data) {
+            assertTrue(t.remove(i));
+        }
+    }
+
 
 }
