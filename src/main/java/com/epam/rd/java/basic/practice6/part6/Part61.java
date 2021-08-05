@@ -30,25 +30,12 @@ public class Part61 {
                 wordsCount.entrySet().stream()
                         .sorted(Map.Entry.comparingByValue())
                         .collect(Collectors.toList());
-        list = list.stream().sorted((e1, e2) -> {
+        list.stream().sorted((e1, e2) -> {
             int cmp = e2.getValue() - e1.getValue();
-            if (cmp < 0) {
-                return -1;
-            }
-            if (cmp > 1) {
-                return 1;
-            }
-            cmp = wordPositions.get(e1.getKey()) - wordPositions.get(e2.getKey());
-            return (cmp < 1) ? -1 : 1;
+            if (cmp != 0) return cmp;
+            return wordPositions.get(e1.getKey()) - wordPositions.get(e2.getKey());
         }).limit(3).sorted((e1, e2) -> e2.getKey().compareTo(e1.getKey()))
-                .collect(Collectors.toList());
-
-        for (int i = 0; i < 3; i++) {
-            String key = list.get(i).getKey();
-            int value = list.get(i).getValue();
-            System.out.printf("%s ==> %d%n", key, value);
-        }
-
+                .forEach(w -> System.out.printf("%s ==> %d%n", w.getKey(), w.getValue()));
     }
 
 }

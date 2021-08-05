@@ -14,7 +14,7 @@ public class Part6 {
         String taskName = "";
         int i = 0;
         while (i < args.length) {
-            String arg = args[i];
+            String arg = args[i].toLowerCase();
             switch (arg) {
                 case "--input":
                 case "-i":
@@ -34,16 +34,15 @@ public class Part6 {
             printUsage();
             return;
         }
-        List<String> words = getListOfWords(fileName);
         switch (taskName) {
             case "frequency":
-                Part61.work(words);
+                Part61.work(getListOfWords(fileName));
                 break;
             case "length":
-                Part62.work(words);
+                Part62.work(getListOfWords(fileName));
                 break;
             case "duplicates":
-                Part63.work(words);
+                Part63.work(getListOfWords(fileName));
                 break;
             default:
                 printUsage();
@@ -61,12 +60,10 @@ public class Part6 {
 
     public static List<String> getListOfWords(String fileName) {
         List<String> words = new ArrayList<>();
-        try {
-            Scanner scanner = new Scanner(new File(fileName));
+        try (Scanner scanner = new Scanner(new File(fileName))) {
             while (scanner.hasNext()) {
                 words.add(scanner.next());
             }
-            scanner.close();
         } catch (IOException ex) {
             Logger.getGlobal().severe(ex.getMessage());
         }

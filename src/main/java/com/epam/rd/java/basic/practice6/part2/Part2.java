@@ -58,6 +58,13 @@ public class Part2 {
     ArrayList#Iterator: 3 ms
      */
 
+    /*
+    ArrayList#Index: 13 ms
+    LinkedList#Index: 93 ms
+    ArrayList#Iterator: 20 ms
+    LinkedList#Iterator: 15 ms
+     */
+
     public static long removeByIterator(final List<Integer> list, int k) {
         List<Integer> l = getListCopy(list);
         long time1 = System.nanoTime();

@@ -12,7 +12,7 @@ public class Demo {
 	private static final String SEPARATOR = "--------------------";
 
 	public static void main(String[] args) {
-		System.out.println("Part 1 demo:");
+		printHeader(1);
 		Part1.main(args);
 		printHeader(2);
 		Part2.main(args);
@@ -34,8 +34,9 @@ public class Demo {
 	}
 
 	private static void printHeader(int n) {
-		System.out.println(SEPARATOR);
+		System.out.println();
 		System.out.printf("Part %d demo:%n", n);
+		System.out.println(SEPARATOR);
 	}
 
 }

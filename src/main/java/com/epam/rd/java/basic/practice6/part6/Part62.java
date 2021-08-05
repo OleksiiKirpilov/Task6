@@ -10,15 +10,11 @@ public class Part62 {
     }
 
     public static void work(List<String> words) {
-        List<String> list = removeDuplicates(words);
-        list = list.stream()
+        removeDuplicates(words)
+                .stream()
                 .sorted((s1, s2) -> s2.length() - s1.length())
                 .limit(3)
-                .collect(Collectors.toList());
-        for (String word : list) {
-            System.out.printf("%s ==> %d%n", word, word.length());
-        }
-
+                .forEach(w -> System.out.printf("%s ==> %d%n", w, w.length()));
     }
 
     public static List<String> removeDuplicates(List<String> words) {
