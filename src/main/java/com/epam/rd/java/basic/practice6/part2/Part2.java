@@ -7,56 +7,39 @@ import java.util.List;
 
 public class Part2 {
 
-    private static int sizeOfList;
-    private static int step;
-
     public static void main(String[] args) {
-        sizeOfList = 10_000;
-        step = 4;
-        processList(new LinkedList<>(), "LinkedList");
-        processList(new ArrayList<>(sizeOfList), "ArrayList");
-    }
-
-    private static void processList(List<Integer> l, String listType) {
-        //ArrayList#Index: 13 ms
-        fillList(l, sizeOfList);
-        System.out.printf("%s#Index: %d ms%n", listType, removeByIndex(l, step));
-        System.out.printf("%s#Iterator: %d ms%n", listType, removeByIterator(l, step));
+        int sizeOfList = 10_000;
+        int step = 4;
+        List<Integer> al1 = new ArrayList<>(sizeOfList);
+        List<Integer> al2 = new ArrayList<>(sizeOfList);
+        List<Integer> ll1 = new LinkedList<>();
+        List<Integer> ll2 = new LinkedList<>();
+        fillList(al1, sizeOfList);
+        System.out.printf("ArrayList#Index: %d ms%n", removeByIndex(al1, step));
+        fillList(ll1, sizeOfList);
+        System.out.printf("LinkedList#Index: %d ms%n", removeByIndex(ll1, step));
+        fillList(al2, sizeOfList);
+        System.out.printf("ArrayList#Iterator: %d ms%n", removeByIterator(al2, step));
+        fillList(ll2, sizeOfList);
+        System.out.printf("LinkedList#Iterator: %d ms%n", removeByIterator(ll2, step));
     }
 
     public static void fillList(List<Integer> list, int sizeOfList) {
+        list.clear();
         for (int i = 0; i < sizeOfList; i++) {
             list.add(i);
         }
     }
 
     public static long removeByIndex(final List<Integer> list, final int k) {
-        List<Integer> l = getListCopy(list);
         long time1 = System.nanoTime();
         int index = -1;
-        while (l.size() > 1) {
-            index = (index + k) % l.size();
-            l.remove(index--);
+        while (list.size() > 1) {
+            index = (index + k) % list.size();
+            list.remove(index--);
         }
         return (System.nanoTime() - time1) / 1_000_000;
     }
-
-    private static List<Integer> getListCopy(List<Integer> list) {
-        List<Integer> l;
-        if (list instanceof ArrayList) {
-            l = new ArrayList<>(list);
-        } else {
-            l = new LinkedList<>(list);
-        }
-        return l;
-    }
-
-    /*
-    LinkedList#Index: 26 ms
-    LinkedList#Iterator: 2 ms
-    ArrayList#Index: 3 ms
-    ArrayList#Iterator: 3 ms
-     */
 
     /*
     ArrayList#Index: 13 ms
@@ -66,13 +49,12 @@ public class Part2 {
      */
 
     public static long removeByIterator(final List<Integer> list, int k) {
-        List<Integer> l = getListCopy(list);
         long time1 = System.nanoTime();
-        Iterator<Integer> it = l.iterator();
-        while (l.size() > 1) {
+        Iterator<Integer> it = list.iterator();
+        while (list.size() > 1) {
             for (int s = k; s != 0; --s) {
                 if (!it.hasNext()) {
-                    it = l.iterator();
+                    it = list.iterator();
                 }
                 it.next();
             }
